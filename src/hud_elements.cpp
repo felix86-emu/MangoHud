@@ -1787,7 +1787,7 @@ void HudElements::fex_stats()
 
     if (HUDElements.params->fex_stats.status) {
         ImguiNextColumnFirstItem();
-        HUDElements.TextColored(HUDElements.colors.engine, "%s", "FEX");
+        HUDElements.TextColored(HUDElements.colors.engine, "%s", FEX_LABEL);
         ImguiNextColumnOrNewRow();
         ImGui::Dummy(ImVec2(0.0f, real_font_size.y));
         ImguiNextColumnOrNewRow();
@@ -1857,7 +1857,7 @@ void HudElements::fex_stats()
         }
 
         ImGui::PushFont(HUDElements.sw_stats->font_small);
-        HUDElements.TextColored(HUDElements.colors.engine, "%s", "FEX JIT top loaded threads");
+        HUDElements.TextColored(HUDElements.colors.engine, "%s", FEX_LABEL " JIT top loaded threads");
         ImGui::PopFont();
 
         ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
@@ -1874,7 +1874,7 @@ void HudElements::fex_stats()
 
     if (HUDElements.params->fex_stats.jit_load) {
         ImGui::PushFont(HUDElements.sw_stats->font_small);
-        HUDElements.TextColored(HUDElements.colors.engine, "%s", "FEX JIT Load");
+        HUDElements.TextColored(HUDElements.colors.engine, "%s", FEX_LABEL " JIT Load");
         ImGui::PopFont();
 
         ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));

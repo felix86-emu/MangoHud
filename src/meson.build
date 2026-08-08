@@ -91,6 +91,7 @@ if is_unixy
 
   if get_option('with_fex')
     pre_args += '-DHAVE_FEX'
+    pre_args += '-DFEX_LABEL="' + get_option('fex_label') + '"'
     vklayer_files += files(
       'fex.cpp',
     )

@@ -9,6 +9,8 @@
 #include "mesa/util/macros.h"
 #if defined(__x86_64__) || defined(__i386__)
 #include <immintrin.h>
+#elif defined(__riscv)
+#include <asm/hwprobe.h>
 #endif
 
 constexpr uint64_t AlignUp(uint64_t Value, uint64_t Alignment) {
@@ -137,7 +139,29 @@ bool is_fex_capable() {
     // All aarch64 systems are fex capable.
     return true;
 }
-
+#elif defined(__riscv)
+static void memory_barrier() {
+    asm volatile("fence rw, rw");
+}
+static uint64_t get_cycle_counter_frequency() {
+#ifndef RISCV_HWPROBE_KEY_TIME_CSR_FREQ
+#define RISCV_HWPROBE_KEY_TIME_CSR_FREQ 8
+#endif
+    riscv_hwprobe pairs[] = {
+        {RISCV_HWPROBE_KEY_TIME_CSR_FREQ, 0},
+    };
+    int result = syscall(SYS_riscv_hwprobe, pairs, std::size(pairs), 0, nullptr, 0);
+    if (result == 0) {
+        uint64_t hz = pairs[0].value;
+        return hz;
+    } else {
+        return 0;
+    }
+}
+bool is_fex_capable() {
+    uint64_t freq = get_cycle_counter_frequency();
+    return freq != 0;
+}
 #elif defined(__x86_64__) || defined(__i386__)
 static void memory_barrier() {
     // Intentionally empty.
