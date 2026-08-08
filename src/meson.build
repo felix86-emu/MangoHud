@@ -20,7 +20,7 @@ conf_data = configuration_data()
 conf_data.set('ld_libdir_mangohud_abs', libdir_mangohud)
 conf_data.set('ld_libdir_mangohud', ld_libdir_mangohud)
 conf_data.set('mangohud_lib_name', 'libMangoHud_shim.so')
-conf_data.set('mangohud_env', 'MANGOHUD')
+conf_data.set('mangohud_env', 'FELIX86_MANGOHUD')
 conf_data.set('cpu_family', host_machine.cpu_family())
 conf_data.set('version', '@VCS_TAG@')
 

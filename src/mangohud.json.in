@@ -11,7 +11,7 @@
          "vkNegotiateLoaderLayerInterfaceVersion": "vkNegotiateLoaderLayerInterfaceVersion"
       },
       "enable_environment": {
-        "MANGOHUD": "1"
+        "FELIX86_MANGOHUD": "1"
       },
       "disable_environment": {
         "DISABLE_MANGOHUD": "1"
